@@ -7,7 +7,6 @@
     "start": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "test:e2e": "playwright test",
     "get-projects": "node src/utils/get.js"
   },
   "devDependencies": {
@@ -17,7 +16,6 @@
     "@astrojs/sitemap": "^3.0.4",
     "@astrojs/tailwind": "^5.1.0",
     "@astrojs/vercel": "^6.1.4",
-    "@playwright/test": "^1.38.0",
     "@tailwindcss/typography": "^0.5.9",
     "@types/bun": "latest",
     "@types/node": "^20.6.2",
