@@ -1,0 +1,31 @@
+---
+title: "2024 Goals"
+---
+
+- Land a programming job [ ]
+- Languages to master: [TypeScript, Elixir, Go, Rust] [ ]
+- Languages to learn: [German, Japanese] [ ]
+- Grind Leet Code with: [TypeScript, Go] [ ]
+- Grind Math solving exercises [ ]
+- Reach 100 wpm on Monkeytype [ ]
+- Practice english speaking [ ]
+- Write one article per month minimun [ ]
+- Make at least 4 YouTube videos in the year [ ]
+- Grow twitter profile [ ]
+- Make more friends [ ]
+- Stop bad habits and create a healthier daily routine [ ]
+- Do more OSS work [ ]
+- Create and finish more side projects [ ]
+- Topics to learn:
+    - Software architecuture [ ]
+    - AWS and DevOps [ ]
+    - Computer architecuture [ ]
+    - Interpreters and compilers [ ]
+    - Low Code [ ]
+    - Type Theory [ ]
+- Books to read:
+    - Thus Spoke Zaratustra - Nietzsche [ ]
+    - Liquid Love - Zygmunt Bauman [ ]
+    - Start Sherlock Holmes from Arthur Conan Doyle [ ]
+    - Structure and Interpretation of Computer Programs - Harold Abelson, Gerald Jay Sussman, Julie Sussman [ ]
+    - Crafting Interpreters - Robert Nystrom [ ]
