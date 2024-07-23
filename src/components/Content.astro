@@ -1,6 +1,7 @@
 ---
 import SocialLinks from './SocialLinks.astro';
 import OtherLinks from './OtherLinks.astro';
+import Divider from './Divider.astro';
 
 import {
   NAME,
@@ -21,20 +22,6 @@ const PLAIN_TEXT_FOR_FRONT_STACK = makePlainText(FRONT_STACK);
 const PLAIN_TEXT_FOR_BACK_STACK = makePlainText(BACK_STACK);
 ---
 <section class="flex flex-col sm:flex-row justify-between sm:space-x-8 mt-4">
-  <div class="flex-shrink-0 items-center">
-    <img
-      fetchpriority="high"
-      src="https://github.com/datsfilipe.png"
-      alt="Filipe's GitHub avatar"
-      class="rounded-lg mx-auto mt-4 mb-2"
-      width="256"
-      height="256"
-    />
-    <span class="w-full mt-6 mb-2 flex justify-center sm:justify-start">
-      <b class="text-lg font-semibold">Social Links!</b>
-    </span>
-    <SocialLinks/>
-  </div>
   <div class="flex flex-col items-center sm:items-start sm:justify-start mt-4 sm:mt-0">
     <h1 class="text-2xl font-bold my-4 p-2 bg-blue-600 w-fit" transition:animate="slide">
       Hi, I'm {NAME}!
@@ -48,9 +35,13 @@ const PLAIN_TEXT_FOR_BACK_STACK = makePlainText(BACK_STACK);
     <p class="my-2 text-justify">
       In my free time, I indulge in <a aria-label="ricing" title="ricing" href="https://jie-fang.github.io/blog/basics-of-ricing" class="text-blue-500" target="_blank" rel="noopener noreferrer">ricing</a>, gaming, movie watching, and coding personal projects.
     </p>
-    <h1 class="text-2xl font-bold my-6">
-      Others!
-    </h1>
-    <OtherLinks/>
+  </div>
+  <div class="flex-shrink-0 items-center">
+    <span class="w-full mt-6 mb-2 flex justify-center sm:justify-start">
+      <b class="text-lg font-semibold">Social Links!</b>
+    </span>
+    <SocialLinks/>
   </div>
 </section>
+<Divider/>
+<OtherLinks/>
