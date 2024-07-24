@@ -11,12 +11,12 @@ export const Header = (props: { title: string }) => {
 				</a>
 			</h1>
 			<nav>
-				<HeaderWrapper title={props.title}>
+				<HeaderWrapper>
 					<ul className='flex-col sm:flex-row sm:items-center justify-between sm:space-x-2 space-x-0 space-y-2 sm:space-y-0 mr-4 sm:mr-0'>
 						<li>
 							<HeaderLink
 								href='/projects'
-								className='font-medium p-2 data-[active]:bg-blue-600 hover:underline'
+								className='font-medium p-2 data-[active=true]:bg-blue-600 hover:underline'
 								aria-label='Projects'
 								title='Projects'
 							>
