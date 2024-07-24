@@ -15,11 +15,10 @@ export const post = z.object({
 	heroImage: z.string().optional()
 })
 
-export const reference = (name: string) =>
+export const reference = (type: string) =>
 	z.object({
-		id: z.string(), // slug
-		name: z.string(),
-		type: z.literal(name)
+		type: z.literal(type),
+		id: z.string()
 	})
 
 export const note = z.object({
