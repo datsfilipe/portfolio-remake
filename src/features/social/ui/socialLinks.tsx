@@ -11,7 +11,7 @@ export const SocialLinks = () => {
 					<span>~</span>
 					<span
 						className={[
-							'p1 rounded-md',
+							'p-1 rounded-md',
 							item.name.toLowerCase().includes('email') && 'bg-blue-800',
 							item.name.toLowerCase().includes('github') && 'bg-gray-700',
 							item.name.toLowerCase().includes('twitter') && 'bg-blue-400',
