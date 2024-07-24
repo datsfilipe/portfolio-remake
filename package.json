@@ -4,11 +4,14 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite --port 3000",
+    "dev": "bun start & bun generate-assets:watch",
+    "start": "vite --port 3000",
     "build": "tsc -b && vite build",
     "preview": "vite preview",
     "lint": "biome lint --error-on-warnings --write ./src",
-    "format": "biome format --write ./src"
+    "format": "biome format --write ./src",
+    "generate-assets": "bun run src/shared/lib/generatePosts.ts && bun run src/shared/lib/generateNotes.ts",
+    "generate-assets:watch": "bun run src/shared/lib/generatePosts.ts watch && bun run src/shared/lib/generateNotes.ts watch"
   },
   "dependencies": {
     "react": "^18.3.1",
