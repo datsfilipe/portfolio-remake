@@ -1,6 +1,6 @@
 import { z } from 'zod'
 
-export const blog = z.object({
+export const post = z.object({
 	title: z.string(),
 	summary: z.string(),
 	publishedAt: z
