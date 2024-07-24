@@ -1,9 +1,11 @@
+import { watch } from 'node:fs'
 import path from 'node:path'
 import { parseMarkdownFile, readMarkdownFiles, writeJson } from './helpers'
 import { post } from './schemas'
 
+const postsDir = path.join(__dirname, '../assets/blog')
+
 export const generatePosts = () => {
-	const postsDir = path.join(__dirname, '../assets/blog')
 	const files = readMarkdownFiles(postsDir)
 	const posts = files.map(file => {
 		const postData = parseMarkdownFile(file)
@@ -15,4 +17,17 @@ export const generatePosts = () => {
 	writeJson(path.join(pagesLibPath, 'posts-metadata.json'), posts)
 }
 
-generatePosts()
+if (process.argv[2] === 'watch') {
+	const watcher = watch(postsDir, { recursive: true }, eventType => {
+		if (eventType === 'change' || eventType === 'rename') {
+			generatePosts()
+		}
+	})
+
+	process.on('SIGINT', () => {
+		watcher.close()
+		process.exit(0)
+	})
+} else {
+	generatePosts()
+}

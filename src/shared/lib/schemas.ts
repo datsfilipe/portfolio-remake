@@ -3,6 +3,7 @@ import { z } from 'zod'
 export const post = z.object({
 	title: z.string(),
 	summary: z.string(),
+	content: z.string(),
 	publishedAt: z
 		.string()
 		.or(z.date())
@@ -23,6 +24,7 @@ export const reference = (name: string) =>
 
 export const note = z.object({
 	title: z.string(),
+	content: z.string(),
 	publishedAt: z
 		.string()
 		.or(z.date())
