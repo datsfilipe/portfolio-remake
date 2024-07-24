@@ -1,16 +1,19 @@
+import { parseMarkdownFile, parseMarkdownToHtml, readMarkdownFiles, writeJson } from './helpers'
 import { watch } from 'node:fs'
-import path from 'node:path'
-import { parseMarkdownFile, readMarkdownFiles, writeJson } from './helpers'
 import { post } from './schemas'
+import path from 'node:path'
 
 const postsDir = path.join(__dirname, '../assets/blog')
 
-export const generatePosts = () => {
+export const generatePosts = async () => {
 	const files = readMarkdownFiles(postsDir)
-	const posts = files.map(file => {
-		const postData = parseMarkdownFile(file)
-		return post.parse(postData)
-	})
+	const posts = Promise.all(
+		files.map(async file => {
+			const postData = parseMarkdownFile(file)
+			postData.content = await parseMarkdownToHtml(postData.content)
+			return post.parse(postData)
+		})
+	)
 
 	const pagesLibPath = path.join(__dirname, '../../pages/lib')
 
@@ -18,9 +21,9 @@ export const generatePosts = () => {
 }
 
 if (process.argv[2] === 'watch') {
-	const watcher = watch(postsDir, { recursive: true }, eventType => {
+	const watcher = watch(postsDir, { recursive: true }, async eventType => {
 		if (eventType === 'change' || eventType === 'rename') {
-			generatePosts()
+			await generatePosts()
 		}
 	})
 
@@ -29,5 +32,5 @@ if (process.argv[2] === 'watch') {
 		process.exit(0)
 	})
 } else {
-	generatePosts()
+	await generatePosts()
 }

@@ -2,6 +2,16 @@ import fs from 'node:fs'
 import path from 'node:path'
 import matter from 'gray-matter'
 
+import { unified } from 'unified'
+import remarkParse from 'remark-parse'
+import remarkMath from 'remark-math'
+import remarkRehype from 'remark-rehype'
+import rehypeSlug from 'rehype-slug'
+import rehypeAutolinkHeadings from 'rehype-autolink-headings'
+import rehypeKatex from 'rehype-katex'
+import rehypeStringify from 'rehype-stringify'
+import rehypeShiki from '@shikijs/rehype'
+
 export const readMarkdownFiles = (dir: string): string[] => {
 	const files = []
 	const items = fs.readdirSync(dir)
@@ -45,4 +55,30 @@ export const writeJson = (filePath: string, data: unknown) => {
 	}
 
 	fs.writeFileSync(filePath, JSON.stringify(data, null, 2))
+}
+
+export const parseMarkdownToHtml = async (markdown: string) => {
+	const result = await unified()
+		.use(remarkParse)
+		.use(remarkRehype)
+		.use(rehypeSlug)
+		.use(rehypeShiki, {
+			themes: {
+				dark: 'min-dark',
+				light: 'min-dark'
+			},
+			fallbackLanguage: 'plaintext'
+		})
+		.use(rehypeAutolinkHeadings, {
+			behavior: 'wrap',
+			properties: {
+				className: ['anchor']
+			}
+		})
+		.use(remarkMath)
+		.use(rehypeKatex)
+		.use(rehypeStringify)
+		.process(markdown)
+
+	return result.value.toString()
 }

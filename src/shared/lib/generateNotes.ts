@@ -1,16 +1,19 @@
+import { parseMarkdownFile, parseMarkdownToHtml, readMarkdownFiles, writeJson } from './helpers'
 import { watch } from 'node:fs'
-import path from 'node:path'
-import { parseMarkdownFile, readMarkdownFiles, writeJson } from './helpers'
 import { note } from './schemas'
+import path from 'node:path'
 
 const notesDir = path.join(__dirname, '../assets/shareable-notes')
 
-export const generateNotes = () => {
+export const generateNotes = async () => {
 	const files = readMarkdownFiles(notesDir)
-	const notes = files.map(file => {
-		const noteData = parseMarkdownFile(file)
-		return note.parse(noteData)
-	})
+	const notes = await Promise.all(
+		files.map(async file => {
+			const noteData = parseMarkdownFile(file)
+			noteData.content = await parseMarkdownToHtml(noteData.content)
+			return note.parse(noteData)
+		})
+	)
 
 	const pagesLibPath = path.join(__dirname, '../../pages/lib')
 
@@ -18,9 +21,9 @@ export const generateNotes = () => {
 }
 
 if (process.argv[2] === 'watch') {
-	const watcher = watch(notesDir, { recursive: true }, eventType => {
+	const watcher = watch(notesDir, { recursive: true }, async eventType => {
 		if (eventType === 'change' || eventType === 'rename') {
-			generateNotes()
+			await generateNotes()
 		}
 	})
 
@@ -29,5 +32,5 @@ if (process.argv[2] === 'watch') {
 		process.exit(0)
 	})
 } else {
-	generateNotes()
+	await generateNotes()
 }
