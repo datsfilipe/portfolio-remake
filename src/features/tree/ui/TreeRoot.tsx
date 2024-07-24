@@ -1,11 +1,11 @@
 import type { ReactElement, ReactNode } from 'react'
-import type { ITreeView, NoteData, NoteNode } from '@features/treeView/model/note'
+import type { ITreeView, NoteData, NoteNode } from '@features/tree/model/note'
 import { useEffect, useState } from 'react'
 import { Tree } from '.'
 
-import { generateTree } from '@features/treeView/lib/generateTree'
-import { toggleNode } from '@features/treeView/lib/toggleNode'
-import { sortTree } from '@features/treeView/lib/sortTree'
+import { generateTree } from '@features/tree/lib/generateTree'
+import { toggleNode } from '@features/tree/lib/toggleNode'
+import { sortTree } from '@features/tree/lib/sortTree'
 
 interface TreeRootProps {
 	notes: Array<{ slug: string; data: NoteData }>

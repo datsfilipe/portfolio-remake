@@ -1,4 +1,4 @@
-import Tree from '@features/treeView/ui'
+import Tree from '@features/tree/ui'
 import Searchbox from '@features/search/ui/searchbox'
 import { SidebarWrapper } from './sidebarWrapper'
 
