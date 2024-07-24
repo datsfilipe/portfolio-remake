@@ -1,0 +1,3 @@
+[submodule "src/shared/assets/shareable-notes"]
+	path = src/shared/assets/shareable-notes
+	url = git@github.com:datsfilipe/shareable-notes
