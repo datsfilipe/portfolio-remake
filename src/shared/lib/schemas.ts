@@ -15,6 +15,8 @@ export const post = z.object({
 	heroImage: z.string().optional()
 })
 
+export type Post = z.infer<typeof post>
+
 export const reference = (type: string) =>
 	z.object({
 		type: z.literal(type),
@@ -24,6 +26,7 @@ export const reference = (type: string) =>
 export const note = z.object({
 	title: z.string(),
 	content: z.string(),
+	slug: z.string().optional(),
 	publishedAt: z
 		.string()
 		.or(z.date())
@@ -32,3 +35,5 @@ export const note = z.object({
 	relatedPosts: z.array(reference('posts')).optional(),
 	relatedNotes: z.array(reference('notes')).optional()
 })
+
+export type Note = z.infer<typeof note>
