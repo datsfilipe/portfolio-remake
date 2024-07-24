@@ -10,7 +10,7 @@ const PLAIN_TEXT_FOR_BACK_STACK = makePlainText(BACK_STACK)
 
 export default function Home() {
 	return (
-		<main className='mb-6 max-w-3xl mx-auto px-4'>
+		<>
 			<section className='flex flex-col sm:flex-row justify-between sm:space-x-8 mt-4'>
 				<div className='flex flex-col items-center sm:items-start sm:justify-start mt-4 sm:mt-0'>
 					<h1 className='text-2xl font-bold my-4 p-2 bg-blue-600 w-fit'>Hi, I'm {NAME}!</h1>
@@ -46,6 +46,6 @@ export default function Home() {
 			</section>
 			<Divider />
 			<OtherLinks />
-		</main>
+		</>
 	)
 }

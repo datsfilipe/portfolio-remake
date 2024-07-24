@@ -6,7 +6,7 @@ export default function CommonLayout(props: { children: React.ReactNode }) {
 	return (
 		<>
 			<Header title={SITE_TITLE} />
-			<main className='mb-6 max-w-3xl mx-auto px-4'>{props.children}</main>
+			<main className='mb-6 max-w-3xl xl:max-w-5xl mx-auto px-4'>{props.children}</main>
 			<Footer />
 		</>
 	)

@@ -4,7 +4,7 @@ import { FaGithub } from 'react-icons/fa'
 
 export const Header = (props: { title: string }) => {
 	return (
-		<header className='flex items-center justify-between py-4 max-w-3xl mx-auto px-4'>
+		<header className='flex items-center justify-between py-4  max-w-3xl xl:max-w-5xl mx-auto px-4'>
 			<h1 className='text-2xl font-bold'>
 				<a href='/' className='hover:no-underline' aria-label={props.title} title={props.title}>
 					{props.title}
