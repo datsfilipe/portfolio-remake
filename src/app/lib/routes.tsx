@@ -18,9 +18,9 @@ for (const path in pages) {
 	const normalizedFilename = filename.includes('$') ? filename.replace('$', ':') : filename.replace('index', '')
 	if (normalizedFilename.includes('error')) continue
 	if (normalizedFilename.includes('[slug]')) isSlugPage = true
-	const slugPath = normalizedFilename.includes('shareable-notes')
-		? normalizedFilename.replace('[slug]', ':noteId')
-		: normalizedFilename.replace('[slug]', ':postId')
+	const slugPath = !normalizedFilename.includes('shareable-notes')
+		? normalizedFilename.replace('[slug]', ':slug')
+		: normalizedFilename.replace('[slug]', '*')
 
 	const layoutname = pages[path]?.layout ?? 'common'
 	let Layout: React.FC<{ children: React.ReactNode }> = () => <></>
