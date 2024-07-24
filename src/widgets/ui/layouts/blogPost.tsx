@@ -16,7 +16,7 @@ export default function BlogPostLayout(props: {
 	return (
 		<>
 			<Header title={SITE_TITLE} />
-			<main className='mb-12 max-w-3xl mx-auto px-4 min-h-[80vh] my-8'>
+			<main className='mb-12 max-w-3xl mx-auto px-4 min-h-[75dvh] my-8'>
 				<div className='flex flex-col space-y-2 my-6'>
 					<h1 className='text-4xl font-bold bg-blue-600 px-4 py-2'>{props.title}</h1>
 					<span className='text-stone-500 text-lg font-semibold self-end'>

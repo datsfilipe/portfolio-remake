@@ -7,7 +7,7 @@ export default function BrainNoteLayout(props: { title: string; children: React.
 	return (
 		<>
 			<Header title={SITE_TITLE} />
-			<main className='flex lg:flex-row flex-col mb-12 max-w-3xl lg:max-w-fit mx-auto px-4 min-h-[80vh] sm:my-8 my-4'>
+			<main className='flex lg:flex-row flex-col mb-12 max-w-3xl lg:max-w-fit mx-auto px-4  min-h-[75dvh] sm:my-8 my-4'>
 				<Sidebar />
 				<section className='flex flex-col space-y-2'>
 					<h1 className='text-4xl font-bold bg-blue-600 px-4 py-2 mb-6'>{props.title}</h1>
