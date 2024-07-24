@@ -25,16 +25,6 @@ export const Header = (props: { title: string }) => {
 						</li>
 						<li>
 							<HeaderLink
-								href='/blog'
-								className='font-medium p-2 data-[active=true]:bg-blue-600'
-								aria-label='Blog'
-								title='Blog'
-							>
-								Blog
-							</HeaderLink>
-						</li>
-						<li>
-							<HeaderLink
 								href='/brain'
 								className='font-medium p-2 data-[active=true]:bg-blue-600'
 								aria-label='Brain'
