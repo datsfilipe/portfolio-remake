@@ -15,9 +15,8 @@ export const generateNotes = async () => {
 		})
 	)
 
-	const pagesLibPath = path.join(__dirname, '../../pages/lib')
-
-	writeJson(path.join(pagesLibPath, 'notes-metadata.json'), notes)
+	const publicPath = path.join(__dirname, '../../../public/assets')
+	writeJson(path.join(publicPath, 'notes.json'), notes)
 }
 
 if (process.argv[2] === 'watch') {

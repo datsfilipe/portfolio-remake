@@ -3,7 +3,7 @@ import { watch } from 'node:fs'
 import { post } from './schemas'
 import path from 'node:path'
 
-const postsDir = path.join(__dirname, '../assets/blog')
+const postsDir = path.join(__dirname, '../assets/posts')
 
 export const generatePosts = async () => {
 	const files = readMarkdownFiles(postsDir)
@@ -15,9 +15,8 @@ export const generatePosts = async () => {
 		})
 	)
 
-	const pagesLibPath = path.join(__dirname, '../../pages/lib')
-
-	writeJson(path.join(pagesLibPath, 'posts-metadata.json'), posts)
+	const publicPath = path.join(__dirname, '../../../public/assets')
+	writeJson(path.join(publicPath, 'posts.json'), posts)
 }
 
 if (process.argv[2] === 'watch') {
