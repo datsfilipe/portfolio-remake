@@ -15,8 +15,13 @@ for (const path in pages) {
 	const filename = path.match(/pages\/ui\/(.*)\.tsx/)?.[1]
 	if (!filename) continue
 
+	let isSlugPage = false
 	const normalizedFilename = filename.includes('$') ? filename.replace('$', ':') : filename.replace('index', '')
 	if (normalizedFilename.includes('error')) continue
+	if (normalizedFilename.includes('[slug]')) isSlugPage = true
+	const slugPath = normalizedFilename.includes('brain')
+		? normalizedFilename.replace('[slug]', ':noteId')
+		: normalizedFilename.replace('[slug]', ':postId')
 
 	const layoutname = pages[path]?.layout ?? 'common'
 	let Layout: React.FC<{ children: React.ReactNode }> = () => <></>
@@ -28,7 +33,7 @@ for (const path in pages) {
 	}
 
 	routes.push({
-		path: `/${normalizedFilename}`,
+		path: isSlugPage ? `/${slugPath}` : `/${normalizedFilename}`,
 		Element: pages[path].default,
 		ErrorElement: Object.values(errorPage)[0]?.default ?? (() => <></>),
 		Layout: Layout

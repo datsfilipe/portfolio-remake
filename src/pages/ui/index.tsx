@@ -4,6 +4,7 @@ import { Divider } from '@shared/ui/divider'
 
 import { NAME, ROLE, FRONT_STACK, BACK_STACK } from '@shared/lib/constants'
 import { makePlainText } from '@shared/lib/helpers'
+import { Posts } from '@features/section/ui/posts'
 
 const PLAIN_TEXT_FOR_FRONT_STACK = makePlainText(FRONT_STACK)
 const PLAIN_TEXT_FOR_BACK_STACK = makePlainText(BACK_STACK)
@@ -46,6 +47,8 @@ export default function Home() {
 			</section>
 			<Divider />
 			<OtherLinks />
+			<Divider direction='left' />
+			<Posts />
 		</>
 	)
 }
