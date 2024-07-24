@@ -1,5 +1,6 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 
+const errorPage: Record<string, { default: React.FC }> = import.meta.glob('@pages/ui/error/index.tsx', { eager: true })
 const pages: Record<string, { default: React.FC; layout: string }> = import.meta.glob('@pages/ui/**/*.tsx', {
 	eager: true
 })
@@ -7,8 +8,6 @@ const layouts: Record<string, { default: React.FC<{ children: React.ReactNode }>
 	'@widgets/ui/layouts/*.tsx',
 	{ eager: true }
 )
-
-const errorPage: Record<string, { default: React.FC }> = import.meta.glob('@pages/ui/error/index.tsx', { eager: true })
 
 const routes = []
 for (const path in pages) {
@@ -19,7 +18,7 @@ for (const path in pages) {
 	const normalizedFilename = filename.includes('$') ? filename.replace('$', ':') : filename.replace('index', '')
 	if (normalizedFilename.includes('error')) continue
 	if (normalizedFilename.includes('[slug]')) isSlugPage = true
-	const slugPath = normalizedFilename.includes('brain')
+	const slugPath = normalizedFilename.includes('shareable-notes')
 		? normalizedFilename.replace('[slug]', ':noteId')
 		: normalizedFilename.replace('[slug]', ':postId')
 

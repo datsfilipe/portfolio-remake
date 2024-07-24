@@ -1,6 +1,6 @@
-export const layout = 'brainNote'
+export const layout = 'shareableNote'
 
-export default function BrainNoteIndex() {
+export default function ShareableNotes() {
 	const indexNote = [].find(note => note.slug === 'readme')
 
 	return <p>Note</p>

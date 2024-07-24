@@ -3,7 +3,7 @@ import { Header } from '@features/header/ui'
 import { Sidebar } from '@features/siderbar/ui'
 import { SITE_TITLE } from '@shared/lib/constants'
 
-export default function BrainNoteLayout(props: { title: string; children: React.ReactNode }) {
+export default function ShareableNoteLayout(props: { title: string; children: React.ReactNode }) {
 	return (
 		<>
 			<Header title={SITE_TITLE} />

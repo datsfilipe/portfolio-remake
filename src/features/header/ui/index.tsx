@@ -25,12 +25,12 @@ export const Header = (props: { title: string }) => {
 						</li>
 						<li>
 							<HeaderLink
-								href='/brain'
+								href='/shareable-notes'
 								className='font-medium p-2 data-[active=true]:bg-blue-600'
-								aria-label='Brain'
-								title='Brain'
+								aria-label='Shareable Notes'
+								title='Shareable Notes'
 							>
-								Brain
+								Shareable Notes
 							</HeaderLink>
 						</li>
 						<li>
