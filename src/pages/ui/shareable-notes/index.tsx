@@ -10,7 +10,7 @@ export default function ShareableNotes() {
 		<>
 			<h1 className='text-4xl font-bold bg-blue-600 px-4 py-2 mb-6'>{note.title}</h1>
 			<article
-				className='prose xl:prose-lg prose-quoteless prose-neutral dark:prose-invert prose-p:text-justify mb-8 prose-headings:my-0'
+				className='prose lg:prose-lg xl:prose-xl prose-quoteless prose-neutral dark:prose-invert prose-p:text-justify mb-8 prose-headings:my-0 prose-li:my-0'
 				// biome-ignore lint/security/noDangerouslySetInnerHtml: intentional
 				dangerouslySetInnerHTML={{ __html: note.content }}
 			/>
