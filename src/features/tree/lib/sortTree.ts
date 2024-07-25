@@ -1,18 +1,20 @@
-import type { NoteNode, ITreeView } from './types'
+import type { NoteNode, ITreeView } from '@features/tree/model/note'
 
 export const sortTree = (tree: ITreeView<NoteNode>): Array<[string, NoteNode | ITreeView<NoteNode>]> => {
-  const sortedEntries = Array.from(tree.entries()).sort(([keyA, valueA], [keyB, valueB]) => {
-    const isFolderA = valueA instanceof Map
-    const isFolderB = valueB instanceof Map
+	const sortedEntries = Array.from(tree.entries()).sort(([keyA, valueA], [keyB, valueB]) => {
+		const isFolderA = valueA instanceof Map
+		const isFolderB = valueB instanceof Map
 
-    if (isFolderA && !isFolderB) {
-      return -1
-    } else if (!isFolderA && isFolderB) {
-      return 1
-    } else {
-      return keyA.localeCompare(keyB)
-    }
-  })
+		if (isFolderA && !isFolderB) {
+			return -1
+		}
 
-  return sortedEntries
+		if (!isFolderA && isFolderB) {
+			return 1
+		}
+
+		return keyA.localeCompare(keyB)
+	})
+
+	return sortedEntries
 }

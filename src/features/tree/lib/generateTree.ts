@@ -1,4 +1,4 @@
-import type { NoteData, NoteNode, MapOrObject, ITreeView } from '../model/note'
+import type { NoteData, NoteNode, MapOrObject, ITreeView } from '@features/tree/model/note'
 
 export const generateTree = (notes: Array<{ slug: string; data: NoteData }>): ITreeView<NoteNode> => {
 	const newTree = new Map()
