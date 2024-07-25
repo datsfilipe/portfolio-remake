@@ -4,16 +4,17 @@ import type { Post } from '@shared/lib/schemas'
 export const Posts = ({ posts }: { posts: Partial<Post>[] }) => {
 	return (
 		<section>
-			<ul className='flex flex-col space-y-4'>
+			<h2 className='text-2xl font-bold text-end mb-8 text-stone-400'>Posts</h2>
+			<ul className='flex flex-col space-y-2'>
 				{posts.map(post => {
 					if (!post.title || !post.publishedAt) return null
 					return (
-						<li key={post.slug} className='space-y-2'>
+						<li key={post.slug} className='space-y-2 text-end'>
 							<a href={`/posts/${post.slug}`} aria-label={`${post.title}!`} title={post.title}>
-								<h4 className='text-xl font-bold text-justify'>{post.title}!</h4>
+								<h4 className='text-xl font-bold'>{post.title}!</h4>
 							</a>
 							<p className='text-stone-300'>
-								<FormattedDate date={post.publishedAt} />
+								~<FormattedDate date={post.publishedAt} />
 							</p>
 						</li>
 					)
