@@ -1,4 +1,8 @@
-import { createBrowserRouter, RouterProvider } from 'react-router-dom'
+import { createBrowserRouter, RouterProvider, type Params } from 'react-router-dom'
+import type { Note } from '@shared/lib/schemas'
+
+// @ts-ignore - it's a commonjs module
+import rawNotes from '@shared/assets/data/notes.js'
 
 const errorPage: Record<string, { default: React.FC }> = import.meta.glob('@pages/ui/error/index.tsx', { eager: true })
 const pages: Record<string, { default: React.FC; layout: string }> = import.meta.glob('@pages/ui/**/*.tsx', {
@@ -35,7 +39,23 @@ for (const path in pages) {
 		path: isSlugPage ? `/${slugPath}` : `/${normalizedFilename}`,
 		Element: pages[path].default,
 		ErrorElement: Object.values(errorPage)[0]?.default ?? (() => <></>),
-		Layout: Layout
+		Layout: Layout,
+		loader: async ({ params }: { params: Params }) => {
+			if (!normalizedFilename.includes('shareable-notes')) return null
+
+			const slug = params['*'] ?? 'readme'.toUpperCase()
+			if (!path.includes('index') && !isSlugPage) return null
+
+			const note = (rawNotes as Note[]).find(note => note.slug === slug)
+
+			try {
+				const decodedContent = decodeURIComponent(atob(note?.content ?? ''))
+				return { ...note, content: decodedContent }
+			} catch (e) {
+				console.error(e)
+				return null
+			}
+		}
 	})
 }
 

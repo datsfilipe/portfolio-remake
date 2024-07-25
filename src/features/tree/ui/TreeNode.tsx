@@ -26,7 +26,7 @@ export default function Node(props: TreeNodeProps): ReactNode {
 	if (props.type === undefined) return null
 
 	if (props.type !== 'folder') {
-		const href = `/brain/${props.slug ?? ''}`
+		const href = `/shareable-notes/${props.slug ?? ''}`
 
 		return (
 			<a
