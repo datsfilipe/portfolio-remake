@@ -10,7 +10,7 @@ import rawNotes from '@shared/assets/data/notes.js'
 export const Sidebar = () => {
 	const { pathname } = useLocation()
 
-	const notes: Note[] = rawNotes
+	const notes = (rawNotes as Note[]).filter(note => note.slug.toLowerCase() !== 'readme')
 	const entries = notes.map(note => {
 		return {
 			slug: note.slug,

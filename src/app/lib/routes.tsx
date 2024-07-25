@@ -15,9 +15,9 @@ const layouts: Record<string, { default: React.FC<{ children: React.ReactNode }>
 	{ eager: true }
 )
 
-const noteLoader = async ({ params, isSlugPage, path }: { params: Params; isSlugPage: boolean; path: string }) => {
+const noteLoader = async ({ params, isSlugPage }: { params: Params; isSlugPage: boolean }) => {
 	const slug = params['*'] ?? 'readme'.toUpperCase()
-	if (!path.includes('index') && !isSlugPage) return null
+	if (slug === 'readme'.toUpperCase() && isSlugPage) return null
 	const note = (rawNotes as Note[]).find(note => note.slug === slug)
 	try {
 		const decodedContent = decodeURIComponent(escape(atob(note?.content ?? '')))
@@ -77,7 +77,7 @@ for (const path in pages) {
 		ErrorElement: Object.values(errorPage)[0]?.default ?? (() => <></>),
 		Layout: Layout,
 		loader: async ({ params }: { params: Params }) => {
-			if (normalizedFilename.includes('shareable-notes')) return noteLoader({ params, isSlugPage, path })
+			if (normalizedFilename.includes('shareable-notes')) return noteLoader({ params, isSlugPage })
 			if (normalizedFilename.includes('posts')) return postLoader({ params })
 			if (!normalizedFilename) return postsListLoader()
 			return null
