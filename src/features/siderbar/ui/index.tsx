@@ -4,10 +4,13 @@ import { SidebarWrapper } from '@features/siderbar/ui/sidebarWrapper'
 import { useLocation } from 'react-router-dom'
 import type { Note } from '@shared/lib/schemas'
 
+// @ts-ignore - it's a commonjs module
+import rawNotes from '@shared/assets/data/notes.js'
+
 export const Sidebar = () => {
 	const { pathname } = useLocation()
 
-	const notes = import.meta.require('@shared/assets/data/notes.js') as Note[]
+	const notes: Note[] = rawNotes
 	const entries = notes.map(note => {
 		return {
 			slug: note.slug,

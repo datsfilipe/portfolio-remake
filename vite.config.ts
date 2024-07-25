@@ -16,5 +16,10 @@ export default defineConfig({
 			'@entities': resolve(__dirname, 'src/entities'),
 			'@shared': resolve(__dirname, 'src/shared')
 		}
+	},
+	build: {
+		commonjsOptions: {
+			transformMixedEsModules: true
+		}
 	}
 })
