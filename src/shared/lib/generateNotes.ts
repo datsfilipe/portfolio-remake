@@ -10,7 +10,7 @@ export const generateNotes = async () => {
 	const notes = await Promise.all(
 		files.map(async file => {
 			const filename = path.basename(file)
-			if (!filename.startsWith('_') || !filename.endsWith('.md')) return null
+			if (filename.startsWith('_') || !filename.endsWith('.md')) return null
 			const noteData: Partial<Note> = parseMarkdownFile(file)
 			noteData.content = await parseMarkdownToHtml(noteData.content || '')
 			noteData.slug = path.relative(notesDir, file).replace('.md', '')

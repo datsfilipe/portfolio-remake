@@ -20,7 +20,7 @@ const noteLoader = async ({ params, isSlugPage, path }: { params: Params; isSlug
 	if (!path.includes('index') && !isSlugPage) return null
 	const note = (rawNotes as Note[]).find(note => note.slug === slug)
 	try {
-		const decodedContent = decodeURIComponent(atob(note?.content ?? ''))
+		const decodedContent = decodeURIComponent(escape(atob(note?.content ?? '')))
 		return { ...note, content: decodedContent }
 	} catch (e) {
 		console.error(e)
@@ -41,8 +41,8 @@ const postLoader = async ({ params }: { params: Params }) => {
 	const slug = params.slug
 	const post = (rawPosts as Post[]).find(post => post.slug === slug)
 	try {
-		const decodedContent = decodeURIComponent(atob(post?.content ?? ''))
-		return { ...post, content: decodedContent }
+		const decodedContent = decodeURIComponent(escape(atob(post?.content ?? '')))
+		return { ...post, content: decodedContent, publishedAt: post?.publishedAt ? new Date(post.publishedAt) : null }
 	} catch (e) {
 		console.error(e)
 		return null

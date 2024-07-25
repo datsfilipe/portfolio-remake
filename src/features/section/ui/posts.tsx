@@ -9,7 +9,7 @@ export const Posts = ({ posts }: { posts: Partial<Post>[] }) => {
 					if (!post.title || !post.publishedAt) return null
 					return (
 						<li key={post.slug} className='space-y-2'>
-							<a href={`/blog/${post.slug}`} aria-label={`${post.title}!`} title={post.title}>
+							<a href={`/posts/${post.slug}`} aria-label={`${post.title}!`} title={post.title}>
 								<h4 className='text-xl font-bold text-justify'>{post.title}!</h4>
 							</a>
 							<p className='text-stone-300'>

@@ -10,7 +10,7 @@ export const generatePosts = async () => {
 	const posts = await Promise.all(
 		files.map(async file => {
 			const filename = path.basename(file)
-			if (!filename.startsWith('_') || !filename.endsWith('.md')) return null
+			if (filename.startsWith('_') || !filename.endsWith('.md')) return null
 			const postData: Partial<Post> = parseMarkdownFile(file)
 			postData.content = await parseMarkdownToHtml(postData.content || '')
 			postData.slug = path.relative(postsDir, file).replace('.md', '')
