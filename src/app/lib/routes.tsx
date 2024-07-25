@@ -17,14 +17,16 @@ const layouts: Record<string, { default: React.FC<{ children: React.ReactNode }>
 
 const noteLoader = async ({ params, isSlugPage }: { params: Params; isSlugPage: boolean }) => {
 	const slug = params['*'] ?? 'readme'.toUpperCase()
-	if (slug === 'readme'.toUpperCase() && isSlugPage) return null
 	const note = (rawNotes as Note[]).find(note => note.slug === slug)
+	if (!note || (note.slug === 'readme'.toUpperCase() && isSlugPage))
+		throw new Response('Not found', { status: 404, statusText: 'Not found' })
+
 	try {
 		const decodedContent = decodeURIComponent(escape(atob(note?.content ?? '')))
 		return { ...note, content: decodedContent }
 	} catch (e) {
 		console.error(e)
-		return null
+		throw new Response('Internal server error', { status: 500, statusText: 'Internal server error' })
 	}
 }
 
@@ -40,12 +42,14 @@ const postsListLoader = async () => {
 const postLoader = async ({ params }: { params: Params }) => {
 	const slug = params.slug
 	const post = (rawPosts as Post[]).find(post => post.slug === slug)
+	if (!post) throw new Response('Not found', { status: 404, statusText: 'Not found' })
+
 	try {
 		const decodedContent = decodeURIComponent(escape(atob(post?.content ?? '')))
 		return { ...post, content: decodedContent, publishedAt: post?.publishedAt ? new Date(post.publishedAt) : null }
 	} catch (e) {
 		console.error(e)
-		return null
+		throw new Response('Internal server error', { status: 500, statusText: 'Internal server error' })
 	}
 }
 
