@@ -26,7 +26,7 @@ export default function BlogPost() {
 			</div>
 			<section className='max-w-full'>
 				<article
-					className='prose xl:prose-lg prose-quoteless prose-neutral dark:prose-invert prose-p:text-justify mb-8'
+					className='prose lg:prose-xl prose-quoteless prose-neutral dark:prose-invert prose-p:text-justify mb-8 prose-headings:my-0'
 					// biome-ignore lint/security/noDangerouslySetInnerHtml: intentional
 					dangerouslySetInnerHTML={{ __html: post.content }}
 				/>
