@@ -26,7 +26,7 @@ export const reference = (type: string) =>
 export const note = z.object({
 	title: z.string(),
 	content: z.string(),
-	slug: z.string().optional(),
+	slug: z.string(),
 	publishedAt: z
 		.string()
 		.or(z.date())

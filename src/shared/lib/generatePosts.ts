@@ -1,4 +1,4 @@
-import { parseMarkdownFile, parseMarkdownToHtml, readMarkdownFiles, writeJson } from './helpers'
+import { parseMarkdownFile, parseMarkdownToHtml, readMarkdownFiles, writeFile } from './helpers'
 import { watch } from 'node:fs'
 import { post } from './schemas'
 import path from 'node:path'
@@ -15,8 +15,8 @@ export const generatePosts = async () => {
 		})
 	)
 
-	const publicPath = path.join(__dirname, '../../../public/assets')
-	writeJson(path.join(publicPath, 'posts.json'), posts)
+	const dataPath = path.join(__dirname, '../assets/data')
+	writeFile(path.join(dataPath, 'posts.js'), posts)
 }
 
 if (process.argv[2] === 'watch') {

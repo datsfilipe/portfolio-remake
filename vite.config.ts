@@ -5,6 +5,7 @@ import { resolve } from 'node:path'
 // https://vitejs.dev/config/
 export default defineConfig({
 	plugins: [react()],
+	assetsInclude: [resolve(__dirname, 'src/shared/assets/data/*.json')],
 	resolve: {
 		alias: {
 			'@app': resolve(__dirname, 'src/app'),

@@ -47,14 +47,18 @@ export const makePlainText = (stack: string[]): string =>
 		})
 		.join('')
 
-export const writeJson = (filePath: string, data: unknown) => {
+export const writeFile = (filePath: string, data: unknown) => {
 	const dir = path.dirname(filePath)
 
 	if (!fs.existsSync(dir)) {
 		fs.mkdirSync(dir, { recursive: true })
 	}
 
-	fs.writeFileSync(filePath, JSON.stringify(data, null, 2))
+	const jsonObject = JSON.stringify(data, null, 2)
+	const jsFileContents = `export default ${jsonObject}`
+	fs.writeFileSync(filePath, jsFileContents, {
+		encoding: 'utf8'
+	})
 }
 
 export const parseMarkdownToHtml = async (markdown: string) => {
@@ -80,5 +84,5 @@ export const parseMarkdownToHtml = async (markdown: string) => {
 		.use(rehypeStringify)
 		.process(markdown)
 
-	return result.value.toString()
+	return Buffer.from(result.value.toString()).toString('base64')
 }

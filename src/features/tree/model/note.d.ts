@@ -1,7 +1,7 @@
 import type { z } from 'zod'
-// import type { notesSchema } from ''
+import type { Note } from '@shared/lib/schemas'
 
-// export type NoteData = z.infer<typeof notesSchema>
+export type NoteData = Note
 export interface NoteNode {
 	slug: string
 	title: string
