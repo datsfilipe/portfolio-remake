@@ -7,7 +7,7 @@ const postsDir = path.join(__dirname, '../assets/posts')
 
 export const generatePosts = async () => {
 	const files = readMarkdownFiles(postsDir)
-	const posts = Promise.all(
+	const posts = await Promise.all(
 		files.map(async file => {
 			const postData = parseMarkdownFile(file)
 			postData.content = await parseMarkdownToHtml(postData.content)
