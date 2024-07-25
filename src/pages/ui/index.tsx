@@ -5,11 +5,15 @@ import { Divider } from '@shared/ui/divider'
 import { NAME, ROLE, FRONT_STACK, BACK_STACK } from '@shared/lib/constants'
 import { makePlainText } from '@shared/lib/helpers'
 import { Posts } from '@features/section/ui/posts'
+import { useLoaderData } from 'react-router-dom'
+import type { Post } from '@shared/lib/schemas'
 
 const PLAIN_TEXT_FOR_FRONT_STACK = makePlainText(FRONT_STACK)
 const PLAIN_TEXT_FOR_BACK_STACK = makePlainText(BACK_STACK)
 
 export default function Home() {
+	const postsList = useLoaderData() as Partial<Post>[]
+
 	return (
 		<>
 			<section className='flex flex-col sm:flex-row justify-between sm:space-x-8 mt-4'>
@@ -48,7 +52,7 @@ export default function Home() {
 			<Divider />
 			<OtherLinks />
 			<Divider direction='left' />
-			<Posts />
+			<Posts posts={postsList} />
 		</>
 	)
 }

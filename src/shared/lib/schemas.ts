@@ -4,6 +4,7 @@ export const post = z.object({
 	title: z.string(),
 	summary: z.string(),
 	content: z.string(),
+	slug: z.string(),
 	publishedAt: z
 		.string()
 		.or(z.date())

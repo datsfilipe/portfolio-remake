@@ -9,6 +9,8 @@ export const generateNotes = async () => {
 	const files = readMarkdownFiles(notesDir)
 	const notes = await Promise.all(
 		files.map(async file => {
+			const filename = path.basename(file)
+			if (!filename.startsWith('_') || !filename.endsWith('.md')) return null
 			const noteData: Partial<Note> = parseMarkdownFile(file)
 			noteData.content = await parseMarkdownToHtml(noteData.content || '')
 			noteData.slug = path.relative(notesDir, file).replace('.md', '')
@@ -17,7 +19,7 @@ export const generateNotes = async () => {
 	)
 
 	const dataPath = path.join(__dirname, '../assets/data')
-	writeFile(path.join(dataPath, 'notes.js'), notes)
+	writeFile(path.join(dataPath, 'notes.js'), notes.filter(Boolean))
 }
 
 if (process.argv[2] === 'watch') {
