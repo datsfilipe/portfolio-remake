@@ -32,7 +32,7 @@ export default function Searchbox(props: SearchboxProps): ReactNode {
 			const entry = props.entries[selectedIndex]
 
 			if (entry != null) {
-				window.location.href = `/brain/${entry.slug}`
+				window.location.href = `/shareable-notes/${entry.slug}`
 			}
 		}
 	}
@@ -95,7 +95,7 @@ export default function Searchbox(props: SearchboxProps): ReactNode {
 								<a
 									key={entry.slug}
 									className={`${index === selectedIndex ? 'bg-neutral-700 selected' : 'hover:bg-neutral-600'} px-4 py-2 cursor-pointer hover:no-underline`}
-									href={`/brain/${entry.slug}`}
+									href={`/shareable-notes/${entry.slug}`}
 									id={index === selectedIndex ? 'selected' : undefined}
 									aria-label={entry.title}
 									title={entry.title}
@@ -107,7 +107,7 @@ export default function Searchbox(props: SearchboxProps): ReactNode {
 								<a
 									key={entry.slug}
 									className={`${index === selectedIndex ? 'bg-neutral-700 selected' : 'hover:bg-neutral-600'} px-4 py-2 cursor-pointer hover:no-underline`}
-									href={`/brain/${entry.slug}`}
+									href={`/shareable-notes/${entry.slug}`}
 									id={index === selectedIndex ? 'selected' : undefined}
 									aria-label={entry.title}
 									title={entry.title}
