@@ -10,10 +10,7 @@ const errorPage: Record<string, { default: React.FC }> = import.meta.glob('@page
 const pages: Record<string, { default: React.FC; layout: string }> = import.meta.glob('@pages/ui/**/*.tsx', {
 	eager: true
 })
-const layouts: Record<string, { default: React.FC<{ children: React.ReactNode }> }> = import.meta.glob(
-	'@widgets/ui/layouts/*.tsx',
-	{ eager: true }
-)
+const layouts: Record<string, { default: React.FC }> = import.meta.glob('@widgets/ui/layouts/*.tsx', { eager: true })
 
 const noteLoader = async ({ params, isSlugPage }: { params: Params; isSlugPage: boolean }) => {
 	const slug = params['*'] ?? 'readme'.toUpperCase()
@@ -67,7 +64,7 @@ for (const path in pages) {
 		: normalizedFilename.replace('[slug]', '*')
 
 	const layoutname = pages[path]?.layout ?? 'common'
-	let Layout: React.FC<{ children: React.ReactNode }> = () => <></>
+	let Layout: React.FC = () => <></>
 	for (const layoutPath in layouts) {
 		if (layoutPath.includes(layoutname)) {
 			Layout = layouts[layoutPath].default
@@ -91,17 +88,15 @@ for (const path in pages) {
 
 const router = createBrowserRouter(
 	routes.map(({ Element, Layout, ErrorElement, ...rest }) => ({
-		...rest,
-		element: (
-			<Layout>
-				<Element />
-			</Layout>
-		),
-		errorElement: (
-			<Layout>
-				<ErrorElement />
-			</Layout>
-		)
+		path: '/',
+		element: <Layout />,
+		children: [
+			{
+				...rest,
+				element: <Element />,
+				errorElement: <ErrorElement />
+			}
+		]
 	}))
 )
 
