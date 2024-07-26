@@ -3,7 +3,7 @@ import { OtherLinks } from '@features/social/ui/otherLinks'
 import { Divider } from '@shared/ui/divider'
 
 import { NAME, ROLE, FRONT_STACK, BACK_STACK, AGE, COMPANY } from '@shared/lib/constants'
-import { makePlainText } from '@shared/lib/helpers'
+import { makePlainText } from '@pages/lib/helpers'
 import { Posts } from '@features/section/ui/posts'
 import { useLoaderData } from 'react-router-dom'
 import type { Post } from '@shared/lib/schemas'

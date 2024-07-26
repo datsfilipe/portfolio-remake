@@ -36,17 +36,6 @@ export const parseMarkdownFile = (filePath: string) => {
 	return { ...data, content }
 }
 
-export const makePlainText = (stack: string[]): string =>
-	stack
-		.map((item: string) => {
-			if (item === stack[stack.length - 1]) {
-				return item
-			}
-
-			return `${item}, `
-		})
-		.join('')
-
 export const writeFile = (filePath: string, data: unknown) => {
 	const dir = path.dirname(filePath)
 
