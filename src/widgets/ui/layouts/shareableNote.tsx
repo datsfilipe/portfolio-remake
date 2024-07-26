@@ -6,7 +6,6 @@ import { useRouteError } from 'react-router-dom'
 
 export default function ShareableNoteLayout(props: { title: string; children: React.ReactNode }) {
 	const error = useRouteError()
-	console.log(error)
 
 	return (
 		<>
