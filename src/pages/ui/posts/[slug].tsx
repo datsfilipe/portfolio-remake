@@ -12,7 +12,7 @@ export default function BlogPost() {
 	return (
 		<>
 			<div className='flex flex-col space-y-2 my-6'>
-				<h1 className='text-4xl font-bold bg-blue-600 px-4 py-2'>{post.title}</h1>
+				<h1 className='text-2xl lg:text-4xl leading-relaxed font-bold bg-blue-600 px-4 py-2'>{post.title}</h1>
 				<span className='text-stone-500 text-lg font-semibold self-end'>
 					<FormattedDate date={post.publishedAt} />
 				</span>
@@ -26,7 +26,7 @@ export default function BlogPost() {
 			</div>
 			<section className='max-w-full'>
 				<article
-					className='prose lg:prose-lg xl:prose-xl prose-quoteless prose-neutral dark:prose-invert prose-p:text-justify mb-8 prose-headings:my-0 prose-li:my-0'
+					className='prose prose-sm xs:prose-base lg:prose-lg xl:prose-xl prose-quoteless prose-neutral dark:prose-invert prose-p:text-justify mb-8 prose-headings:my-0 prose-li:my-0'
 					// biome-ignore lint/security/noDangerouslySetInnerHtml: intentional
 					dangerouslySetInnerHTML={{ __html: post.content }}
 				/>
