@@ -7,8 +7,10 @@ export const SidebarWrapper = (props: { children: React.ReactNode }) => {
 			<div className='lg:block hidden'>
 				<Drawer>{props.children}</Drawer>
 			</div>
-			<div className='lg:hidden block'>
-				<Dropdown icon='FaTree'>{props.children}</Dropdown>
+			<div className='lg:hidden block absolute right-2 mt-[1.2rem]'>
+				<Dropdown withBg icon='tree' direction='right'>
+					{props.children}
+				</Dropdown>
 			</div>
 		</aside>
 	)
