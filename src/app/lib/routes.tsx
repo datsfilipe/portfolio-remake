@@ -72,8 +72,11 @@ for (const path in pages) {
 		}
 	}
 
+	const fullPath: string = isSlugPage ? `/${slugPath}` : `/${normalizedFilename}`
+
 	routes.push({
-		path: isSlugPage ? `/${slugPath}` : `/${normalizedFilename}`,
+		layoutPath: layoutname === 'common' ? '/' : fullPath.split('/')[1],
+		routePath: layoutname === 'common' ? fullPath : fullPath.split('/')[2],
 		Element: pages[path].default,
 		ErrorElement: Object.values(errorPage)[0]?.default ?? (() => <></>),
 		Layout: Layout,
@@ -88,11 +91,12 @@ for (const path in pages) {
 
 const router = createBrowserRouter(
 	routes.map(({ Element, Layout, ErrorElement, ...rest }) => ({
-		path: '/',
+		path: rest.layoutPath,
 		element: <Layout />,
 		children: [
 			{
 				...rest,
+				path: rest.routePath,
 				element: <Element />,
 				errorElement: <ErrorElement />
 			}
