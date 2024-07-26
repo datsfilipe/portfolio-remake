@@ -1,29 +1,9 @@
 import { FaAngleLeft } from 'react-icons/fa6'
-import { useEffect, useState } from 'react'
-
-const useMediaQuery = (query: string) => {
-	const [matches, setMatches] = useState(false)
-	useEffect(() => {
-		const media = window.matchMedia(query)
-		if (media.matches !== matches) {
-			setMatches(media.matches)
-		}
-		const listener = () => {
-			setMatches(media.matches)
-		}
-		media.addEventListener('change', listener)
-		return () => media.removeEventListener('change', listener)
-	}, [matches, query])
-	return matches
-}
+import { useEffect } from 'react'
+import { useDrawer } from '../lib/drawerContext'
 
 export default function Drawer(props: { children: React.ReactNode }) {
-	const [isOpen, setIsOpen] = useState(false)
-	const isLargeScreen = useMediaQuery('(min-width: 1280px)')
-
-	useEffect(() => {
-		setIsOpen(isLargeScreen)
-	}, [isLargeScreen])
+	const { isOpen, setIsOpen } = useDrawer()
 
 	useEffect(() => {
 		const handleKeyDown = (event: KeyboardEvent) => {
@@ -48,7 +28,7 @@ export default function Drawer(props: { children: React.ReactNode }) {
 
 		window.addEventListener('keydown', handleKeyDown)
 		return () => window.removeEventListener('keydown', handleKeyDown)
-	}, [])
+	}, [setIsOpen])
 
 	return (
 		<div className={`flex ${!isOpen ? '-ml-14' : 'mr-4'} min-h-[75dvh]`}>
