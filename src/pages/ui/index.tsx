@@ -2,7 +2,7 @@ import { SocialLinks } from '@features/social/ui/socialLinks'
 import { OtherLinks } from '@features/social/ui/otherLinks'
 import { Divider } from '@shared/ui/divider'
 
-import { NAME, ROLE, FRONT_STACK, BACK_STACK } from '@shared/lib/constants'
+import { NAME, ROLE, FRONT_STACK, BACK_STACK, AGE, COMPANY } from '@shared/lib/constants'
 import { makePlainText } from '@shared/lib/helpers'
 import { Posts } from '@features/section/ui/posts'
 import { useLoaderData } from 'react-router-dom'
@@ -20,8 +20,22 @@ export default function Home() {
 				<div className='flex flex-col items-center sm:items-start sm:justify-start mt-4 sm:mt-0'>
 					<h1 className='text-2xl font-bold my-4 p-2 bg-blue-600 w-fit'>Hi, I'm {NAME}!</h1>
 					<p className='my-2 text-justify'>
-						I'm a 21-year-old <b>{ROLE}</b> based in Brazil with a strong focus on the web. I've gained remote
-						development experience and contributed to open source projects.
+						I'm a {AGE}-year-old <b>{ROLE}</b> based in Brazil with a strong focus on the web. I've gained remote
+						development experience and contributed to open source projects.{' '}
+					</p>
+					<p className='my-2 text-justify'>
+						{COMPANY ? (
+							<span>
+								I'm currently working at{' '}
+								<b>
+									<a href={COMPANY.link} className='text-blue-500' target='_blank' rel='noopener noreferrer'>
+										{COMPANY.name}
+									</a>{' '}
+									- {COMPANY.description}
+								</b>
+								.
+							</span>
+						) : null}
 					</p>
 					<p className='my-2 text-justify'>
 						I mainly use <b>{PLAIN_TEXT_FOR_FRONT_STACK}</b>, and more for front-end and{' '}

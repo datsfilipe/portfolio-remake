@@ -2,6 +2,12 @@ export const SITE_TITLE = 'Filipe Lima'
 
 export const NAME = 'Filipe Lima'
 export const ROLE = 'Fullstack Software Engineer'
+export const AGE = 22
+export const COMPANY = {
+	name: 'D3',
+	link: 'https://d3.inc/',
+	description: '"Creating the next generation of Web3 domains"'
+}
 export const BOOKS = [
 	'Clean Code - Robert C. Martin',
 	'Metamorphosis - Franz Kafka',
