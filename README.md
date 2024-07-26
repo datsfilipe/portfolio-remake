@@ -7,6 +7,8 @@
 ![Repository Size](https://img.shields.io/github/repo-size/datsfilipe/datsfilipe.dev.svg)
 ![Last Commit](https://img.shields.io/github/last-commit/datsfilipe/datsfilipe.dev.svg)
 
+</div>
+
 ## Credits
 
 - [aripiprazole/gabx.io](https://github.com/aripiprazole/gabx.io) - inspiration for the homepage.
