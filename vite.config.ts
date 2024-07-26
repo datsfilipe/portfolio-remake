@@ -48,6 +48,17 @@ export default defineConfig({
 	},
 	build: {
 		outDir: 'dist',
+		sourcemap: true,
+		chunkSizeWarningLimit: 1300,
+		rollupOptions: {
+			output: {
+				manualChunks: {
+					notes: ['@shared/assets/data/notes.js'],
+					posts: ['@shared/assets/data/posts.js'],
+					routes: ['@app/lib/routes.tsx']
+				}
+			}
+		},
 		commonjsOptions: {
 			transformMixedEsModules: true
 		}
