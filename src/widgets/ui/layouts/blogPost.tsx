@@ -6,7 +6,7 @@ export default function BlogPostLayout(props: { children: React.ReactNode }) {
 	return (
 		<>
 			<Header title={SITE_TITLE} />
-			<main className='mb-12 max-w-3xl mx-auto px-4 min-h-[75dvh] my-8'>{props.children}</main>
+			<main className='mb-12 mx-auto px-4 min-h-[75dvh] sm:my-8 my-4 max-w-3xl xl:max-w-5xl'>{props.children}</main>
 			<Footer />
 		</>
 	)
