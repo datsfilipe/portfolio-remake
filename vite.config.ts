@@ -34,7 +34,10 @@ export default defineConfig({
 			}))
 		})
 	],
-	assetsInclude: [resolve(__dirname, 'src/shared/assets/data/*.json')],
+	assetsInclude: [
+		resolve(__dirname, 'src/shared/assets/data/*.json'),
+		resolve(__dirname, 'src/shared/assets/shareable-notes/**/*(.svg|.png|.jpg|.jpeg|.gif|.webp)')
+	],
 	resolve: {
 		alias: {
 			'@app': resolve(__dirname, 'src/app'),
