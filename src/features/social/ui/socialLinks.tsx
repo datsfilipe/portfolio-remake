@@ -2,7 +2,14 @@ import { FaGithub, FaTwitter, FaLinkedinIn, FaRedditAlien, FaYoutube, FaEnvelope
 import { SOCIAL } from '@shared/lib/constants'
 
 export const SocialLinks = () => {
-	const icons = [FaGithub, FaTwitter, FaLinkedinIn, FaRedditAlien, FaYoutube, FaTiktok]
+	const icons = [
+		{ name: 'github', icon: FaGithub },
+		{ name: 'twitter', icon: FaTwitter },
+		{ name: 'linkedin', icon: FaLinkedinIn },
+		{ name: 'reddit', icon: FaRedditAlien },
+		{ name: 'youtube', icon: FaYoutube },
+		{ name: 'tiktok', icon: FaTiktok }
+	]
 
 	return (
 		<ul className='sm:flex-col flex-row flex-wrap sm:flex-nowrap px-4 sm:px-0 mb-4 sm:mb-0 justify-center sm:justify-normal'>
@@ -26,10 +33,8 @@ export const SocialLinks = () => {
 						{item.name.toLowerCase() === 'email' ? (
 							<FaEnvelope size={18} />
 						) : (
-							icons.map((Icon, index) =>
-								Icon.name.toLowerCase().includes(item.name.toLowerCase()) ? (
-									<Icon key={`${item.name}-${index}`} size={18} />
-								) : null
+							icons.map(({ icon: Icon, name }, index) =>
+								name.toLowerCase() === item.name.toLowerCase() ? <Icon key={`${item.name}-${index}`} size={18} /> : null
 							)
 						)}
 					</span>
