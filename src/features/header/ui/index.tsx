@@ -25,6 +25,16 @@ export const Header = (props: { title: string }) => {
 						</li>
 						<li>
 							<HeaderLink
+								href='/feed.xml'
+								className='font-medium p-2 data-[active=true]:bg-blue-600 hover:underline'
+								aria-label='RSS Feed'
+								title='RSS Feed'
+							>
+								RSS Feed
+							</HeaderLink>
+						</li>
+						<li>
+							<HeaderLink
 								href='/shareable-notes'
 								className='font-medium p-2 data-[active=true]:bg-blue-600'
 								aria-label='Shareable Notes'
