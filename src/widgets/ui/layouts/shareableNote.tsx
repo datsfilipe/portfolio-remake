@@ -11,9 +11,9 @@ export default function ShareableNoteLayout(props: { title: string; children: Re
 	return (
 		<>
 			<Header title={SITE_TITLE} />
-			<main className='flex lg:flex-row flex-col mb-12 max-w-3xl lg:max-w-fit mx-auto px-4  min-h-[75dvh] sm:my-8 my-4'>
+			<main className='flex lg:flex-row flex-col mb-12 mx-auto px-4 min-h-[75dvh] sm:my-8 my-4 max-w-3xl xl:max-w-5xl'>
 				{!error && <Sidebar />}
-				<section className='flex flex-col space-y-2'>{props.children}</section>
+				<section className='flex flex-col space-y-2 w-full'>{props.children}</section>
 			</main>
 			<Footer />
 		</>
