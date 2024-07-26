@@ -29,7 +29,7 @@ export default defineConfig({
 				title: post.title,
 				description: post.summary,
 				link: `https://datsfilipe.dev/posts/${post.slug}/`,
-				content: decodeURIComponent(escape(atob(post?.content ?? ''))),
+				content: `<![CDATA[ ${decodeURIComponent(escape(atob(post?.content ?? '')))} ]]>`,
 				...(post.publishedAt && { pubDate: new Date(post.publishedAt) })
 			}))
 		})
