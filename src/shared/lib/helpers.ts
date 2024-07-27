@@ -5,6 +5,7 @@ import matter from 'gray-matter'
 import { unified } from 'unified'
 import remarkParse from 'remark-parse'
 import remarkMath from 'remark-math'
+import remarkGfm from 'remark-gfm'
 import remarkRehype from 'remark-rehype'
 import rehypeSlug from 'rehype-slug'
 import rehypeAutolinkHeadings from 'rehype-autolink-headings'
@@ -53,6 +54,8 @@ export const writeFile = (filePath: string, data: unknown) => {
 export const parseMarkdownToHtml = async (markdown: string) => {
 	const result = await unified()
 		.use(remarkParse)
+		.use(remarkGfm)
+		.use(remarkMath)
 		.use(remarkRehype)
 		.use(rehypeSlug)
 		.use(rehypeShiki, {
@@ -68,7 +71,6 @@ export const parseMarkdownToHtml = async (markdown: string) => {
 				className: ['anchor']
 			}
 		})
-		.use(remarkMath)
 		.use(rehypeKatex)
 		.use(rehypeStringify)
 		.process(markdown)
